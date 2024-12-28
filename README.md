@@ -5,7 +5,7 @@
 
 👉🏻 관련 레포지토리
 
-Bata-Shop: Frontend
+Bata-Shop: Frontend : https://github.com/bytebird96/bata-shop-frontend.git
 
 👉🏻 **사용 기술 스택**
 - **Spring Boot**  
