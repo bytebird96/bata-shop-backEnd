@@ -14,7 +14,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public Page<Product> getProductsPaged(int page, int size, String sort){
-        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort));
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC,sort));
         return productRepository.findAll(pageRequest);
     }
 

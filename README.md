@@ -7,6 +7,13 @@
 
 Bata-Shop: Frontend : https://github.com/bytebird96/bata-shop-frontend.git
 
+---
+👉🏻 **구현 화면**
+
+<img src="https://github.com/user-attachments/assets/b767e3c8-a904-44d9-b39b-50cd0b4fa51c"/>
+
+
+---
 👉🏻 **사용 기술 스택**
 - **Spring Boot**  
   - Java 기반의 웹 애플리케이션 프레임워크로, 빠르고 효율적인 개발 환경을 제공하기 위해 사용하였습니다.
@@ -24,6 +31,7 @@ Bata-Shop: Frontend : https://github.com/bytebird96/bata-shop-frontend.git
 
 - **Logback**  
   - 애플리케이션 로그 관리를 위해 사용하며, 디버깅과 모니터링에 활용됩니다.
+---
 
 👉🏻 **상세 기능(예정)**
 1. **사용자 관리**

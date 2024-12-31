@@ -13,7 +13,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // CSRF 비활성화
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").permitAll() // API 경로 허용
+                        .requestMatchers("/api/**","/images/**").permitAll() // API 경로 허용
                         .anyRequest().authenticated() // 그 외 요청은 인증 필요
                 )
                 .formLogin(form -> form

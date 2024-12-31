@@ -20,8 +20,8 @@ public class ProductController {
     @GetMapping("/getProducts")
     public Page<Product> getProducts(
             @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size,
-            @RequestParam(value = "sort", defaultValue = "name") String sort) {
+            @RequestParam(value = "size", defaultValue = "16") int size,
+            @RequestParam(value = "sort", defaultValue = "evaluation") String sort) {
         return productService.getProductsPaged(page, size, sort);
     }
 }
