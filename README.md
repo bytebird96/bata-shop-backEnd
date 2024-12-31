@@ -71,3 +71,40 @@ Bata-Shop: Frontend : https://github.com/bytebird96/bata-shop-frontend.git
 git clone https://github.com/your-repository/bata-shop-backend.git
 cd bata-shop-backend
 mvn clean install
+```
+### 2. 초기 데이터 DDL
+```bash
+-- 테스트 데이터 삽입 SQL
+INSERT INTO product (name, price, title, image, evaluation)
+VALUES
+    ('Product 1', 1000, 'Title 1', '/images/product1.jpg', 5),
+    ('Product 2', 2000, 'Title 2', '/images/product2.jpg', 4),
+    ('Product 3', 3000, 'Title 3', '/images/product3.jpg', 3),
+    ('Product 4', 4000, 'Title 4', '/images/product4.jpg', 5),
+    ('Product 5', 5000, 'Title 5', '/images/product5.jpg', 4),
+    ('Product 6', 6000, 'Title 6', '/images/product6.jpg', 3),
+    ('Product 7', 7000, 'Title 7', '/images/product7.jpg', 5),
+    ('Product 8', 8000, 'Title 8', '/images/product8.jpg', 4),
+    ('Product 9', 9000, 'Title 9', '/images/product9.jpg', 3),
+    ('Product 10', 10000, 'Title 10', '/images/product10.jpg', 5);
+DELIMITER //
+CREATE PROCEDURE InsertTestData()
+BEGIN
+    DECLARE i INT DEFAULT 2;
+    WHILE i <= 10 DO
+            INSERT INTO product (name, price, title, image, evaluation)
+            SELECT
+                CONCAT(name, ' ', i),
+                price + (i * 1000),
+                CONCAT(title, ' ', i),
+                REPLACE(image, '.jpg', CONCAT(i, '.jpg')),
+                evaluation
+            FROM product
+            WHERE id <= 10;
+            SET i = i + 1;
+        END WHILE;
+END //
+DELIMITER ;
+-- 프로시저 실행
+CALL InsertTestData();
+```
