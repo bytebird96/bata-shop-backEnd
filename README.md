@@ -8,7 +8,9 @@
 Bata-Shop: Frontend : https://github.com/bytebird96/bata-shop-frontend.git
 
 ---
-👉🏻 **구현 화면**
+👉🏻 **구현 화면(추가 중)**
+
+**예시 이미지의 경우 GPT로 생성**
 
 <img src="https://github.com/user-attachments/assets/b767e3c8-a904-44d9-b39b-50cd0b4fa51c"/>
 
