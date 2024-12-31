@@ -74,37 +74,58 @@ mvn clean install
 ```
 ### 2. 초기 데이터 DDL
 ```bash
+create table product
+(
+    id         bigint auto_increment
+        primary key,
+    name       varchar(255) null,
+    price      double       not null,
+    title      varchar(255) null,
+    image      varchar(255) null,
+    evaluation int          null
+);
+
+ALTER TABLE product
+    ADD COLUMN createdAt datetime DEFAULT CURRENT_TIMESTAMP, -- 생성일시
+    ADD COLUMN updatedAt datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; -- 수정일시
+
 -- 테스트 데이터 삽입 SQL
-INSERT INTO product (name, price, title, image, evaluation)
+INSERT INTO product (name, price, title, image, evaluation, createdAt, updatedAt)
 VALUES
-    ('Product 1', 1000, 'Title 1', '/images/product1.jpg', 5),
-    ('Product 2', 2000, 'Title 2', '/images/product2.jpg', 4),
-    ('Product 3', 3000, 'Title 3', '/images/product3.jpg', 3),
-    ('Product 4', 4000, 'Title 4', '/images/product4.jpg', 5),
-    ('Product 5', 5000, 'Title 5', '/images/product5.jpg', 4),
-    ('Product 6', 6000, 'Title 6', '/images/product6.jpg', 3),
-    ('Product 7', 7000, 'Title 7', '/images/product7.jpg', 5),
-    ('Product 8', 8000, 'Title 8', '/images/product8.jpg', 4),
-    ('Product 9', 9000, 'Title 9', '/images/product9.jpg', 3),
-    ('Product 10', 10000, 'Title 10', '/images/product10.jpg', 5);
+    ('Product 1', 1000, 'Title 1', 'product_sample_1.png', 5, NOW(), NOW()),
+    ('Product 2', 2000, 'Title 2', 'product_sample_2.png', 4, NOW(), NOW()),
+    ('Product 3', 3000, 'Title 3', 'product_sample_3.png', 3, NOW(), NOW()),
+    ('Product 4', 4000, 'Title 4', 'product_sample_4.png', 5, NOW(), NOW()),
+    ('Product 5', 5000, 'Title 5', 'product_sample_1.png', 4, NOW(), NOW()),
+    ('Product 6', 6000, 'Title 6', 'product_sample_2.png', 3, NOW(), NOW()),
+    ('Product 7', 7000, 'Title 7', 'product_sample_3.png', 5, NOW(), NOW()),
+    ('Product 8', 8000, 'Title 8', 'product_sample_4.png', 4, NOW(), NOW()),
+    ('Product 9', 9000, 'Title 9', 'product_sample_1.png', 3, NOW(), NOW()),
+    ('Product 10', 10000, 'Title 10', 'product_sample_2.png', 5, NOW(), NOW());
+
+-- 프로시저 생성
 DELIMITER //
 CREATE PROCEDURE InsertTestData()
 BEGIN
     DECLARE i INT DEFAULT 2;
     WHILE i <= 10 DO
-            INSERT INTO product (name, price, title, image, evaluation)
+            INSERT INTO product (name, price, title, image, evaluation, createdAt, updatedAt)
             SELECT
                 CONCAT(name, ' ', i),
                 price + (i * 1000),
                 CONCAT(title, ' ', i),
                 REPLACE(image, '.jpg', CONCAT(i, '.jpg')),
-                evaluation
+                evaluation,
+                NOW(),
+                NOW()
             FROM product
             WHERE id <= 10;
             SET i = i + 1;
         END WHILE;
 END //
 DELIMITER ;
+
 -- 프로시저 실행
 CALL InsertTestData();
+
 ```
