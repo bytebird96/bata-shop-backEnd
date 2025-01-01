@@ -86,8 +86,8 @@ create table product
 );
 
 ALTER TABLE product
-    ADD COLUMN createdAt datetime DEFAULT CURRENT_TIMESTAMP, -- 생성일시
-    ADD COLUMN updatedAt datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; -- 수정일시
+    ADD COLUMN created_At datetime DEFAULT CURRENT_TIMESTAMP, -- 생성일시
+    ADD COLUMN updated_At datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; -- 수정일시
 
 -- 테스트 데이터 삽입 SQL
 INSERT INTO product (name, price, title, image, evaluation, createdAt, updatedAt)
