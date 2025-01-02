@@ -1,9 +1,6 @@
 package com.shop.betashop.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -19,5 +16,6 @@ public class User {
     private String email;
     private String phone;
     //관리자 여부
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRoleType role;
 }
