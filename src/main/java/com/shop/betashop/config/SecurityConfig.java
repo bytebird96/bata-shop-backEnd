@@ -20,7 +20,7 @@ public class SecurityConfig {
     @Bean
     public RoleHierarchy roleHierarchy() {
         return RoleHierarchyImpl.withRolePrefix("ROLE_").role(UserRoleType.ADMIN.toString())
-                .implies(UserRoleType.SELLER.toString()).build();
+                .implies(UserRoleType.USER.toString()).build();
     }
 
     @Bean
