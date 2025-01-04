@@ -129,3 +129,13 @@ DELIMITER ;
 CALL InsertTestData();
 
 ```
+```bash
+CREATE TABLE user (
+id INT AUTO_INCREMENT PRIMARY KEY,          -- 기본 키, 자동 증가
+password VARCHAR(255) NOT NULL,             -- 비밀번호
+user_name VARCHAR(255) NOT NULL,            -- 사용자 이름
+email VARCHAR(255) NOT NULL UNIQUE,         -- 이메일 (고유 값)
+phone VARCHAR(20),                          -- 전화번호
+role VARCHAR(50) NOT NULL                   -- 관리자 여부 (ENUM 타입 문자열)
+);
+```

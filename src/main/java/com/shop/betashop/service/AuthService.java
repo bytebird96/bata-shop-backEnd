@@ -34,10 +34,10 @@ public class AuthService {
 
         User user;
         if(isEmail(userId)){
-            user = userRepository.findByUserEmail(userId)
+            user = userRepository.findByEmail(userId)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid email address"));
         }else if (isPhoneNumber(userId)){
-            user = userRepository.findByUserPhone(userId)
+            user = userRepository.findByPhone(userId)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid phone number"));
         }else{
             throw new IllegalArgumentException("Invalid user id");
@@ -50,6 +50,25 @@ public class AuthService {
         LoginResponse loginResponse = new LoginResponse(jwtUtil.generateToken(user));
 
         return loginResponse;
+    }
+
+    /**
+     * 사용자 존재 여부 판단
+     * @param loginRequest
+     * @return
+     */
+    public boolean isUserExist(String userId){
+        boolean isUserExist = false;
+
+        if(isEmail(userId)){
+            isUserExist = userRepository.existsByEmail(userId);
+        }else if (isPhoneNumber(userId)){
+            isUserExist = userRepository.existsByPhone(userId);
+        }else{
+            throw new IllegalArgumentException("Invalid user id");
+        }
+
+        return isUserExist;
     }
 
     /**
