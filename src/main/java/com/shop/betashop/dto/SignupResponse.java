@@ -1,10 +1,15 @@
 package com.shop.betashop.dto;
 
-public class LoginResponse {
+public class SignupResponse {
+    private String message;
     private String token;
 
-    public LoginResponse(String token) {
-        this.token = token;
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getToken() {
