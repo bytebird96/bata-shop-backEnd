@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @Data
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +27,10 @@ public class Product {
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public Product(Long id, String name, int price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
 }

@@ -8,6 +8,7 @@ import com.shop.betashop.util.JwtUtil;
 import com.shop.betashop.util.MessageProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ public class AuthService {
     private final JwtUtil jwtUtil;
 
     public AuthService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, JwtUtil jwtUtil
-    , CustomUserRepository customUserRepository) {
+    , @Qualifier("customUserRepositoryImpl") CustomUserRepository customUserRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
