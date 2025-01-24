@@ -28,6 +28,8 @@ public class Product {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    public Product() {}
+
     public Product(Long id, String name, int price) {
         this.id = id;
         this.name = name;
