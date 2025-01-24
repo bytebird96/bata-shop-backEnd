@@ -3,6 +3,7 @@ package com.shop.betashop.service;
 import com.shop.betashop.model.Product;
 import com.shop.betashop.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -37,6 +38,7 @@ public class ProductServiceTest {
     }
 
     @Test
+    @DisplayName("메인화면 목록 조회 서버스 단")
     void shouldReturnPagedProducts() {
         //Given
         int page = 0;
