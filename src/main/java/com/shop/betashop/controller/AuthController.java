@@ -5,6 +5,7 @@ import com.shop.betashop.dto.LoginResponse;
 import com.shop.betashop.dto.SignupRequest;
 import com.shop.betashop.dto.SignupResponse;
 import com.shop.betashop.service.AuthService;
+import com.shop.betashop.util.LoginUtil;
 import com.shop.betashop.util.MessageProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:4000")
+@CrossOrigin(origins = {"http://localhost:4000", "http://192.168.0.2:4000", "http://172.31.0.1:4000"})
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
@@ -30,11 +34,25 @@ public class AuthController {
     }
 
     @GetMapping("/isUserExist")
-    public ResponseEntity<Boolean> isUserExist(@RequestParam String userId) {
+    public ResponseEntity<Map<String,String>> isUserExist(@RequestParam String userId) {
+        String validate = LoginUtil.validateContactInfo(userId);
+        Map<String, String> response = new HashMap<>();
+        if(!validate.equals("Success")){
+            response.put("code",MessageProvider.INVALID_INPUT);
+            response.put("result","ERROR");
+            return ResponseEntity.ok(response);
+        }
         // 회원 아이디 존재 여부 판단
         Boolean isUserExist = authService.isUserExist(userId);
+        if(!isUserExist){
+            response.put("code",MessageProvider.NOT_FOUND_USER);
+            response.put("result","FAIL");
+            return ResponseEntity.ok(response);
+        }
+        response.put("code","");
+        response.put("result","Success");
 
-        return ResponseEntity.ok(isUserExist);
+        return ResponseEntity.ok(response);
     }
 
     /**

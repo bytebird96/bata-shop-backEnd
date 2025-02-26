@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "http://localhost:4000")
+@CrossOrigin(origins = {"http://localhost:4000", "http://192.168.0.2:4000", "http://172.31.0.1:4000"})
 public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 

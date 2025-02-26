@@ -2,6 +2,7 @@ package com.shop.betashop.service;
 
 import com.shop.betashop.dto.*;
 import com.shop.betashop.model.User;
+import com.shop.betashop.model.UserRoleType;
 import com.shop.betashop.repository.CustomUserRepository;
 import com.shop.betashop.repository.UserRepository;
 import com.shop.betashop.util.JwtUtil;
@@ -102,6 +103,7 @@ public class AuthService {
         user.setPhone(signupRequest.getPhone());
         user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
         user.setUserName(signupRequest.getUserName());
+        user.setRole(UserRoleType.USER);
 
         //저장
         user = userRepository.save(user);
